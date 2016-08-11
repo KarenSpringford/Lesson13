@@ -17,6 +17,17 @@ namespace Lesson13
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
+            //setup the default formatter
+            var json = config.Formatters.JsonFormatter;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            //ABSOLUTELY NEED these 2 
+            json.SerializerSettings.PreserveReferencesHandling = 
+                Newtonsoft.Json.PreserveReferencesHandling.Objects;
+
+            json.SerializerSettings.ReferenceLoopHandling = 
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
