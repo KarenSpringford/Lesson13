@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Lesson13.Models;
@@ -24,9 +25,9 @@ namespace Lesson13.Controllers
 
         // GET: api/Genres/5
         [ResponseType(typeof(Genre))]
-        public IHttpActionResult GetGenre(int id)
+        public async Task<IHttpActionResult> GetGenre(int id)
         {
-            Genre genre = db.Genres.Find(id);
+            Genre genre = await db.Genres.FindAsync(id);
             if (genre == null)
             {
                 return NotFound();
@@ -37,7 +38,7 @@ namespace Lesson13.Controllers
 
         // PUT: api/Genres/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutGenre(int id, Genre genre)
+        public async Task<IHttpActionResult> PutGenre(int id, Genre genre)
         {
             if (!ModelState.IsValid)
             {
@@ -53,7 +54,7 @@ namespace Lesson13.Controllers
 
             try
             {
-                db.SaveChanges();
+                await db.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -72,7 +73,7 @@ namespace Lesson13.Controllers
 
         // POST: api/Genres
         [ResponseType(typeof(Genre))]
-        public IHttpActionResult PostGenre(Genre genre)
+        public async Task<IHttpActionResult> PostGenre(Genre genre)
         {
             if (!ModelState.IsValid)
             {
@@ -80,23 +81,23 @@ namespace Lesson13.Controllers
             }
 
             db.Genres.Add(genre);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return CreatedAtRoute("DefaultApi", new { id = genre.GenreId }, genre);
         }
 
         // DELETE: api/Genres/5
         [ResponseType(typeof(Genre))]
-        public IHttpActionResult DeleteGenre(int id)
+        public async Task<IHttpActionResult> DeleteGenre(int id)
         {
-            Genre genre = db.Genres.Find(id);
+            Genre genre = await db.Genres.FindAsync(id);
             if (genre == null)
             {
                 return NotFound();
             }
 
             db.Genres.Remove(genre);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
 
             return Ok(genre);
         }
