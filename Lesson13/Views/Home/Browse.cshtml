@@ -1,0 +1,14 @@
+﻿@using Lesson13.Models
+@model Genre
+
+<div ng-controller="AlbumsByGenreController" ng-init="init('@Model.Name')"
+     class="col-md-offset-3 col-md-6">
+    <h1>@ViewBag.Title</h1>
+    <ul class="list-group">
+        <li ng-repeat="album in albumsbygenre.Albums" class="list-group-item">
+            <a href="/Home/Details/{{album.AlbumId}}">{{album.Title}}</a>
+        </li>
+    </ul>
+</div>
+
+

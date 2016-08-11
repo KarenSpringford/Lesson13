@@ -20,8 +20,21 @@ namespace Lesson13
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/angular.js",
+                "~/Scripts/angular-resource.js",
+                "~/Scripts/angular-route.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/application").Include(
+                "~/Scripts/Modules/app.module.js",
+                "~/Scripts/Controllers/albumbygenre.controller.js",
+                "~/Scripts/Controllers/genres.controller.js",
+                "~/Scripts/Services/albumbygenre.service.js",
+                "~/Scripts/Services/genre.service.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css",
                       "~/Content/site.css"));
         }
     }

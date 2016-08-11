@@ -1,5 +1,6 @@
 namespace Lesson13.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -18,6 +19,7 @@ namespace Lesson13.Models
 
         public string Name { get; set; }
 
+        [JsonIgnore]
         public string Description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

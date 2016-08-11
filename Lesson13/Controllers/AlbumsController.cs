@@ -36,6 +36,16 @@ namespace Lesson13.Controllers
             return Ok(album);
         }
 
+        //GET: api/Albums?genre=Rock
+        [ResponseType(typeof(Album))]
+        public IHttpActionResult GetAlbum(string genre)
+        {
+            //Retrieve Genre and its associated Albums from the DB
+            var albumsByGenre = db.Genres.Include("Albums").Single(g => g.Name == genre);
+
+            return Ok(albumsByGenre);
+        }
+
         // PUT: api/Albums/5
         [ResponseType(typeof(void))]
         public async Task<IHttpActionResult> PutAlbum(int id, Album album)
